@@ -7,11 +7,19 @@ Before running the simulations, it's recommended to set up a virtual environment
 Create a venv (recommended)
 1. Clone the Repository
 ```console
-git clone https://github.com/InbalPreuss/DnaStorage.git
-cd dna_storage_shortmer_simulation
-```
-2. Create a Virtual Environment (venv)
+# Clone main simulation repository
+git clone https://github.com/InbalPreuss/dna_storage_simulation_2d_rs_EC_erasure.git
+cd dna_storage_simulation_new_error_correction
 
+# Clone RS repository into this directory
+git clone https://github.com/InbalPreuss/unireedsolomon.git
+
+```
+2. Set Up Python Environment
+(a) Install Python 3.10
+Ensure you're using Python 3.10, as required by the simulation.
+
+(b) Create and Activate a Virtual Environment
 For Unix or MacOS:
 ```console
 python3 -m venv venv
@@ -24,18 +32,30 @@ python -m venv venv
 .\venv\Scripts\activate
 ```
 
-3. Install Dependencies
+(c) Install Dependencies
 ```console
 pip install -r requirements.txt
 ```
+3. Set PYTHONPATH
+Set the PYTHONPATH so Python can find your modules correctly:
+```console
+export PYTHONPATH=$(pwd):$PYTHONPATH
+```
+On Windows, use:
+```console
+set PYTHONPATH=%cd%;%PYTHONPATH%
+```
 
-
-### Run simulation experiment:
-1. Create simulation data. The data will be in data/testing.
+4. Run the Simulation Script
+The main simulation script is located in the tests directory. To run it:
+```console
+python3 tests/distributed.py
+```
+Alternatively, you can run it in the background:
 ```console
 nohup python3 -m tests.distributed &
 ```
-2. Run plots on the data created. The data will be in .
+5. Run plots on the data created. The data will be in .
 When finished run:
 ```console
 nohup python3 -m dna_storage.plots &
